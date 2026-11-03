@@ -1,0 +1,38 @@
+% --- Conteúdo para o arquivo Algoritmos/shell_sort.tex ---
+% --- Conteúdo ATUALIZADO para Algoritmos/shell_sort.tex ---
+
+\qquad O \textit{Shell Sort} é uma variação do \textit{Insertion Sort} que busca reduzir o número de trocas ao permitir a comparação de elementos distantes entre si. O algoritmo ordena o vetor em várias passadas, cada uma associada a um intervalo (\textit{gap}) diferente: em cada passada, elementos separados por esse intervalo são comparados e reorganizados usando a lógica do \textit{Insertion Sort}. O \textit{gap} é reduzido a cada passada até chegar a 1, quando o algoritmo se comporta como um \textit{Insertion Sort} tradicional \cite{sedgewick}.
+
+% ... (resto do arquivo com a tabela de custos) ...
+
+\qquad Como nas passadas iniciais o \textit{gap} é maior, elementos distantes já são colocados próximos de sua posição final, o que reduz o trabalho necessário nas passadas seguintes. Na última passada, com \textit{gap} igual a 1, o vetor já está quase ordenado, o que torna essa etapa final do \textit{Insertion Sort} bem mais rápida do que seria em um vetor completamente desordenado.
+
+\qquad A seguir é apresentado o código-fonte da implementação em C++, acompanhado de uma análise de custo. Diferente dos algoritmos anteriores, a frequência exata das linhas do \textit{Shell Sort} depende da sequência de \textit{gaps} escolhida, o que torna sua análise mais complexa.
+
+\vspace{1cm} % Adiciona um espaço vertical
+
+\begin{center}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l l l l}
+\hline
+\multicolumn{2}{l}{\textbf{void ShellSort(vector<int>\& A)}} & \textbf{Custo} & \textbf{Vezes} \\
+\hline
+1 & \texttt{int n = A.size();} & $c_1$ & 1 \\
+2 & \texttt{for (int gap = n / 2; gap > 0; gap /= 2) \{} & $c_2$ & $\approx \log n$ \\
+3 & \texttt{    for (int i = gap; i < n; i++) \{} & $c_3$ & (depende do gap) \\
+4 & \texttt{        int temp = A[i];} & $c_4$ & (depende do gap) \\
+5 & \texttt{        int j;} & $c_5$ & (depende do gap) \\
+6 & \texttt{        for (j = i; j >= gap \&\& A[j - gap] > temp; j -= gap) \{} & $c_6$ & (depende do gap) \\
+7 & \texttt{            A[j] = A[j - gap];} & $c_7$ & (depende do gap) \\
+8 & \texttt{        \}} & 0 & - \\
+9 & \texttt{        A[j] = temp;} & $c_8$ & (depende do gap) \\
+10 & \texttt{    \}} & 0 & - \\
+11 & \texttt{\}} & 0 & - \\
+\hline
+\end{tabular}%
+}
+\end{center}
+
+\vspace{1cm} % Adiciona um espaço vertical
+
+\qquad A frequência exata das linhas internas (3 a 10) depende da sequência de \textit{gaps} utilizada e da ordem inicial do vetor, por isso não é expressa por uma fórmula simples como nos algoritmos anteriores. Já o laço externo (linha 2), que divide o \textit{gap} pela metade a cada passo, executa aproximadamente $\log n$ vezes.

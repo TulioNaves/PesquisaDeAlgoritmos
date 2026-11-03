@@ -1,0 +1,35 @@
+% --- Conteúdo CORRIGIDO para o arquivo Algoritmos/selection_sort.tex ---
+% --- Conteúdo ATUALIZADO para Algoritmos/selection_sort.tex ---
+
+\qquad O \textit{Selection Sort} (ordenação por seleção) divide o vetor em duas partes: uma sublista já ordenada, que cresce da esquerda para a direita, e o restante ainda desordenado. A cada iteração, o algoritmo percorre a porção não ordenada, encontra o menor elemento e o troca com o primeiro elemento dessa porção. Esse processo se repete até que todo o vetor esteja ordenado \cite{sedgewick}.
+
+% ... (resto do arquivo com a tabela de custos) ...
+
+\qquad A seguir é apresentado o código-fonte da implementação em C++, junto com a análise do custo de cada instrução e do número de vezes que ela é executada.
+
+\vspace{1cm} % Adiciona um espaço vertical
+
+\begin{center}
+\begin{tabular}{l l l l}
+\hline
+\multicolumn{2}{l}{\textbf{void selectionSort(vector<int>\& A)}} & \textbf{Custo} & \textbf{Vezes} \\
+\hline
+1 & \texttt{int n = A.size();} & $c_1$ & 1 \\
+2 & \texttt{for (int i = 0; i < n - 1; i++) \{} & $c_2$ & $n$ \\
+3 & \texttt{    int min\_idx = i;} & $c_3$ & $n-1$ \\
+4 & \texttt{    for (int j = i + 1; j < n; j++) \{} & $c_4$ & $\sum_{i=0}^{n-2} (n-i-1) = \frac{n(n-1)}{2}$ \\
+5 & \texttt{        if (A[j] < A[min\_idx]) \{} & $c_5$ & $\frac{n(n-1)}{2}$ \\
+6 & \texttt{            min\_idx = j;} & $c_6$ & (depende da entrada) \\
+7 & \texttt{        \}} & 0 & - \\
+8 & \texttt{    \}} & 0 & - \\
+9 & \texttt{    int temp = A[min\_idx];} & $c_7$ & $n-1$ \\
+10 & \texttt{    A[min\_idx] = A[i];} & $c_8$ & $n-1$ \\
+11 & \texttt{    A[i] = temp;} & $c_9$ & $n-1$ \\
+12 & \texttt{\}} & 0 & - \\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{1cm} % Adiciona um espaço vertical
+
+\qquad Os valores $c_1, c_2, \dots, c_9$ representam o custo de cada linha do algoritmo. Diferente do Bubble Sort, o número de comparações (linhas 4 e 5) é sempre $\frac{n(n-1)}{2}$, independentemente da ordem inicial dos dados. Já o número de trocas (linhas 9, 10 e 11) é fixo em $n-1$, pois ocorre uma única vez ao final de cada iteração do laço externo.

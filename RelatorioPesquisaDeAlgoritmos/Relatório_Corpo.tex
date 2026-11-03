@@ -1,0 +1,123 @@
+\documentclass[12pt,arial]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{lipsum}
+\usepackage{tabto}
+\usepackage{graphicx}
+\usepackage{graphics}
+\usepackage{listings}
+
+\hyphenation{palavra}
+\usepackage[top=3cm,left=3cm,bottom=2cm,right=2cm]{geometry}
+\usepackage{amsmath}
+\usepackage{placeins}
+
+% Mude para o seu nome
+\author{[Túlio José Oliveira Naves]}
+\usepackage{setspace}
+\setstretch{1.5}
+\begin{document}
+	\begin{titlepage}
+		\begin{center}
+			\textbf{Universidade Federal de Viçosa}
+			\textit{\\Campus}
+			\textbf{Rio Paranaíba}
+			\textnormal{\\\vspace{4cm} Túlio José Oliveira Naves - 8780}
+			\textbf{\\\vspace{5cm}Análise de Desempenho em Algorítmos de Ordenação}
+			\textbf{\\\vspace{9cm}Rio Paranaíba - MG \\ 2026}
+		\end{center}
+	\end{titlepage}
+	
+		\begin{titlepage}
+			\begin{center}
+				\textbf{Universidade Federal de Viçosa}
+				\textit{\\Campus}
+				\textbf{Rio Paranaíba}
+				\textnormal{\\\vspace{3cm}Túlio José Oliveira Naves - 8780}
+				\textbf{\\\vspace{4cm}Análise de Desempenho em Algorítmos de Ordenação\vspace{3cm}}
+					\begin{flushright}
+						\begin{minipage}{.5\textwidth}
+							\textnormal{Trabalho apresentado para obtenção de créditos na disciplina SIN213 - Projeto de Algoritmo da Universidade Federal de Viçosa - Campus de Rio Paranaíba, ministrada pelo Professor Pedro Moisés de Souza.}
+						\end{minipage}
+					\end{flushright}
+					
+				\textbf{\\\vspace{3cm}Rio Paranaíba - MG \\ 2026}
+				
+			\end{center}
+		\end{titlepage}
+		
+		
+		\section{RESUMO}
+		\input{Resumo}
+		\newpage
+
+            % Sumário
+		\tableofcontents
+		\newpage
+  
+		\section{INTRODUÇÃO}
+		\input{introducao}
+		\newpage
+
+            \section{ALGORITMOS}
+		\subsection{Insertion Sort}
+		\input{Algoritmos/insertion_sort}
+		\newpage
+		\subsection{Bubble Sort}
+		\input{Algoritmos/bubble_sort}
+		\newpage
+		\subsection{Selection Sort}
+		\input{Algoritmos/selection_sort}
+		\newpage
+		\subsection{Shell Sort}
+		\input{Algoritmos/shell_sort}
+		\newpage
+        \subsection{Merge Sort}
+		\input{Algoritmos/merge_sort}
+		\newpage
+  
+            \section{ANÁLISE DE COMPLEXIDADE}
+		\subsection{Insertion Sort}
+		\input{Analise/insertion_sort}
+	    \vspace*{1.5cm}
+		\subsection{Bubble Sort}
+		\input{Analise/bubble_sort}
+	    \vspace*{1.5cm}
+		\subsection{Selection Sort}
+		\input{Analise/selection_sort}
+	    \vspace*{1.5cm}
+		\subsection{Shell Sort}
+		\input{Analise/shell_sort}
+	    \vspace*{1.5cm}
+        \subsection{Merge Sort}
+		\input{Analise/merge_sort}
+	    \vspace*{1.5cm}
+        
+		\section{TABELA E GRÁFICO}
+            \subsection{Insertion Sort}
+		\input{Tabela&Grafico/insertion_sort}
+		\newpage
+            \subsection{Bubble Sort}
+		\input{Tabela&Grafico/bubble_sort}
+		\newpage
+            \subsection{Selection Sort}
+		\input{Tabela&Grafico/selection_sort}
+		\newpage
+            \subsection{Shell Sort}
+		\input{Tabela&Grafico/shell_sort}
+		\newpage
+            \subsection{Merge Sort}
+		\input{Tabela&Grafico/merge_sort}
+		\newpage
+            \subsection{Comparativo Geral}
+		\input{Tabela&Grafico/comparativo_geral}
+		\newpage
+  
+		\section{CONCLUSÃO}
+		\input{conclusao}
+		\newpage
+  
+		\section{REFERÊNCIAS BIBLIOGRÁFICAS}
+		\input{referencia}
+		\newpage
+\end{document}

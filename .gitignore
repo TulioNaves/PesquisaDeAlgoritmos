@@ -1,0 +1,17 @@
+# CLion / CMake (vale também para os que estão dentro de src/)
+cmake-build-*/
+.idea/
+*.exe
+
+# LaTeX (arquivos gerados na compilação)
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+
+# Vetores gerados (muito grandes)
+**/Arquivos de Entrada/
+**/Arquivos de Saida/

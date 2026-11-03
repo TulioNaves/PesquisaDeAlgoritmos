@@ -1,0 +1,33 @@
+% --- Conteúdo CORRIGIDO para o arquivo Algoritmos/bubble_sort.tex ---
+% --- Conteúdo ATUALIZADO para Algoritmos/bubble_sort.tex ---
+
+\qquad O \textit{Bubble Sort} (ordenação por bolha) é um algoritmo de ordenação simples, geralmente utilizado para fins didáticos. Seu funcionamento consiste em percorrer o vetor diversas vezes, comparando pares de elementos adjacentes e trocando-os de posição quando estão fora de ordem. A cada passagem, o maior elemento ainda não ordenado é deslocado para o final do vetor. O algoritmo termina quando uma passagem completa não realiza nenhuma troca, o que indica que o vetor já está ordenado \cite{cormen}.
+
+% ... (resto do arquivo com a tabela de custos) ...
+
+\qquad A seguir é apresentado o código-fonte da implementação em C++, junto com a análise do custo de cada instrução e do número de vezes que ela é executada, considerando um vetor de entrada de tamanho $n$.
+
+\vspace{1cm} % Adiciona um espaço vertical
+
+\begin{center}
+\begin{tabular}{l l l l}
+\hline
+\multicolumn{2}{l}{\textbf{void bubbleSort(vector<int>\& A)}} & \textbf{Custo} & \textbf{Vezes} \\
+\hline
+1 & \texttt{int n = A.size();} & $c_1$ & 1 \\
+2 & \texttt{for (int i = 0; i < n - 1; i++) \{} & $c_2$ & $n$ \\
+3 & \texttt{    for (int j = 0; j < n - i - 1; j++) \{} & $c_3$ & $\frac{n(n-1)}{2}$ \\
+4 & \texttt{        if (A[j] > A[j + 1]) \{} & $c_4$ & $\frac{n(n-1)}{2}$ \\
+5 & \texttt{            int temp = A[j];} & $c_5$ & (depende da entrada) \\
+6 & \texttt{            A[j] = A[j + 1];} & $c_6$ & (depende da entrada) \\
+7 & \texttt{            A[j + 1] = temp;} & $c_7$ & (depende da entrada) \\
+8 & \texttt{        \}} & 0 & - \\
+9 & \texttt{    \}} & 0 & - \\
+10 & \texttt{\}} & 0 & - \\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{1cm} % Adiciona um espaço vertical
+
+\qquad Os valores $c_1, c_2, \dots, c_7$ representam o custo de cada linha do algoritmo. Os laços aninhados resultam em uma soma de execuções que se aproxima de $\frac{n(n-1)}{2}$. Já as linhas de troca (5, 6 e 7) só são executadas quando os elementos comparados estão fora de ordem, portanto o número de execuções dessas linhas depende da entrada.

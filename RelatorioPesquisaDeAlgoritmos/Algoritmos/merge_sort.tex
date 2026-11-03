@@ -1,0 +1,60 @@
+\qquad O \textit{Merge Sort} é um algoritmo de ordenação baseado na estratégia de dividir para conquistar. O vetor é dividido ao meio repetidamente, até que cada parte tenha apenas um elemento, e um vetor com um único elemento já está ordenado. Em seguida, as partes ordenadas são intercaladas (\textit{merge}) duas a duas, sempre produzindo uma parte ordenada maior, até que o vetor inteiro esteja ordenado \cite{sedgewick}.
+
+\qquad A etapa que realmente ordena é a intercalação: dadas duas metades já ordenadas, o algoritmo compara os menores elementos de cada uma, copia o menor para o vetor final e avança na metade de onde ele saiu. Como cada elemento é copiado uma única vez por intercalação, essa etapa percorre o trecho uma só vez. Quando os elementos comparados são iguais, o da metade esquerda é copiado primeiro, o que torna o algoritmo estável.
+
+\qquad A seguir é apresentado o código-fonte da implementação em C++, acompanhado de uma análise de custo. Diferente dos algoritmos anteriores, o \textit{Merge Sort} é recursivo e utiliza um vetor auxiliar, alocado uma única vez e reaproveitado em todas as chamadas. Na tabela, $m = fim - inicio + 1$ representa o tamanho do trecho tratado em cada chamada de \texttt{merge}.
+
+\vspace{1cm} % Adiciona um espaço vertical
+
+\begin{center}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l l l l}
+\hline
+\multicolumn{2}{l}{\textbf{void merge(vector<int>\& A, vector<int>\& aux, int inicio, int meio, int fim)}} & \textbf{Custo} & \textbf{Vezes (por chamada)} \\
+\hline
+1 & \texttt{for (int k = inicio; k <= fim; k++) \{} & $c_1$ & $m + 1$ \\
+2 & \texttt{    aux[k] = A[k];} & $c_2$ & $m$ \\
+3 & \texttt{\}} & 0 & - \\
+4 & \texttt{int i = inicio;} & $c_3$ & 1 \\
+5 & \texttt{int j = meio + 1;} & $c_4$ & 1 \\
+6 & \texttt{for (int k = inicio; k <= fim; k++) \{} & $c_5$ & $m + 1$ \\
+7 & \texttt{    if (i > meio) \{} & $c_6$ & $m$ \\
+8 & \texttt{        A[k] = aux[j++];} & $c_7$ & $\le m$ \\
+9 & \texttt{    \} else if (j > fim) \{} & $c_8$ & $\le m$ \\
+10 & \texttt{        A[k] = aux[i++];} & $c_9$ & $\le m$ \\
+11 & \texttt{    \} else if (aux[j] < aux[i]) \{} & $c_{10}$ & $\le m$ \\
+12 & \texttt{        A[k] = aux[j++];} & $c_{11}$ & $\le m$ \\
+13 & \texttt{    \} else \{} & 0 & - \\
+14 & \texttt{        A[k] = aux[i++];} & $c_{12}$ & $\le m$ \\
+15 & \texttt{    \}} & 0 & - \\
+16 & \texttt{\}} & 0 & - \\
+\hline
+\end{tabular}%
+}
+\end{center}
+
+\vspace{1cm} % Adiciona um espaço vertical
+
+\qquad Em cada iteração do segundo laço (linha 6), exatamente uma das atribuições das linhas 8, 10, 12 e 14 é executada. Por isso, a soma das execuções dessas quatro linhas é exatamente $m$, e a chamada de \texttt{merge} tem custo proporcional a $m$, ou seja, $\Theta(m)$.
+
+\vspace{1cm} % Adiciona um espaço vertical
+
+\begin{center}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l l l l}
+\hline
+\multicolumn{2}{l}{\textbf{void mergeSortRecursivo(vector<int>\& A, vector<int>\& aux, int inicio, int fim)}} & \textbf{Custo} & \textbf{Vezes (total)} \\
+\hline
+1 & \texttt{if (inicio >= fim) return;} & $c_{13}$ & $2n - 1$ \\
+2 & \texttt{int meio = inicio + (fim - inicio) / 2;} & $c_{14}$ & $n - 1$ \\
+3 & \texttt{mergeSortRecursivo(A, aux, inicio, meio);} & $T(\lceil n/2 \rceil)$ & $n - 1$ \\
+4 & \texttt{mergeSortRecursivo(A, aux, meio + 1, fim);} & $T(\lfloor n/2 \rfloor)$ & $n - 1$ \\
+5 & \texttt{merge(A, aux, inicio, meio, fim);} & $\Theta(m)$ & $n - 1$ \\
+\hline
+\end{tabular}%
+}
+\end{center}
+
+\vspace{1cm} % Adiciona um espaço vertical
+
+\qquad A árvore de chamadas recursivas tem $n$ folhas (trechos de um elemento) e $n - 1$ nós internos, totalizando $2n - 1$ chamadas. Em cada nó interno o algoritmo calcula o ponto médio, faz duas chamadas recursivas e uma intercalação. A função principal \texttt{MergeSort} apenas obtém o tamanho do vetor, aloca o vetor auxiliar de $n$ posições e chama \texttt{mergeSortRecursivo} uma vez. O custo total dessa estrutura é analisado na seção seguinte.

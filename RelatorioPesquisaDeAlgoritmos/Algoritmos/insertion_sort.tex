@@ -1,0 +1,32 @@
+% --- Conteúdo ATUALIZADO para Algoritmos/insertion_sortAlgoritmo.tex ---
+
+\qquad O \textit{Insertion Sort}é um algoritmo simples e intuitivo que constrói a lista ordenada de forma incremental, de maneira semelhante ao processo de organizar cartas de um jogo nas mãos. O método percorre o vetor a partir do segundo elemento, definindo o valor atual como uma chave. Em seguida, compara essa chave com os elementos à sua esquerda, área que se mantém constantemente ordenada e move os valores maiores uma posição à frente para inserir a chave em seu local correto.
+
+\qquad De acordo com Cormen et al. (2012), apesar de possuir complexidade de pior caso quadrática $O(n^2)$, o algoritmo apresenta excelente desempenho para vetores pequenos. Além disso, destaca-se por ser \textbf{estável} (preserva a ordem relativa de elementos com chaves iguais), \textit{\textbf{in-place}} (requer apenas $O(1)$ de memória auxiliar) e \textbf{adaptativo} (exige poucas operações quando a entrada já se encontra parcialmente ordenada) \cite{cormen}.
+
+\qquad A seguir, apresentamos a implementação do algoritmo em linguagem C++, acompanhada da análise do custo de execução de cada instrução e do número de vezes que cada linha é executada para uma entrada de tamanho $n$.
+
+\vspace{1cm}
+
+\begin{center}
+\begin{tabular}{l l l l}
+\hline
+\multicolumn{2}{l}{\textbf{void insertionSort(vector<int>\& A)}} & \textbf{Custo} & \textbf{Vezes} \\
+\hline
+1 & \texttt{int n = A.size();} & $c_1$ & 1 \\
+2 & \texttt{for (int j = 1; j < n; j++) \{} & $c_2$ & $n$ \\
+3 & \texttt{    int chave = A[j];} & $c_3$ & $n-1$ \\
+4 & \texttt{    int i = j - 1;} & $c_4$ & $n-1$ \\
+5 & \texttt{    while (i >= 0 \&\& A[i] > chave) \{} & $c_5$ & $\sum_{j=1}^{n-1} t_j$ \\
+6 & \texttt{        A[i + 1] = A[i];} & $c_6$ & $\sum_{j=1}^{n-1} (t_j-1)$ \\
+7 & \texttt{        i--;} & $c_7$ & $\sum_{j=1}^{n-1} (t_j-1)$ \\
+8 & \texttt{    \}} & 0 & $n-1$ \\
+9 & \texttt{    A[i + 1] = chave;} & $c_8$ & $n-1$ \\
+10 & \texttt{\}} & 0 & $n-1$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{1cm}
+
+\qquad Na tabela acima, os termos $c_1, c_2, \dots, c_8$ indicam o custo computacional de cada linha de código. A variável $t_j$ refere-se à quantidade de iterações do laço \textit{while} na linha 5 para determinado índice $j$. O número de execuções das linhas internas (6 e 7) equivale a $(t_j - 1)$, visto que o laço realiza uma última verificação para determinar a condição de término.
