@@ -24,6 +24,8 @@ add_executable(pesquisadealgoritmos
         src/main.cpp
         src/MergeSort.cpp
         src/MergeSort.h
+        src/QuickSort.cpp
+        src/QuickSort.h
         src/SelectionSort.cpp
         src/SelectionSort.h
         src/ShellSort.cpp
@@ -32,3 +34,13 @@ add_executable(pesquisadealgoritmos
 # Pasta onde ficam "Bubble Sort/", "Insertion Sort/" etc. (raiz do projeto),
 # para os arquivos nao irem parar dentro de cmake-build-debug
 target_compile_definitions(pesquisadealgoritmos PRIVATE PASTA_PROJETO="${CMAKE_SOURCE_DIR}")
+
+
+# Aumenta a pilha do executavel para 1 GB. O Quick Sort Versao 1 faz ate n chamadas
+# recursivas aninhadas em vetores crescentes e decrescentes, e com a pilha padrao
+# do Windows (1 MB) o programa quebra a partir de uns 30.000 elementos.
+if(MSVC)
+    target_link_options(pesquisadealgoritmos PRIVATE "/STACK:1073741824")
+elseif(MINGW)
+    target_link_options(pesquisadealgoritmos PRIVATE "-Wl,--stack,1073741824")
+endif()

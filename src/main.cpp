@@ -9,6 +9,7 @@
 #include "SelectionSort.h"
 #include "ShellSort.h"
 #include "MergeSort.h"
+#include "QuickSort.h"
 
 using namespace std;
 
@@ -93,6 +94,8 @@ int main() {
         cout << "3 - Selection Sort" << endl;
         cout << "4 - Shell Sort" << endl;
         cout << "5 - Merge Sort" << endl;
+        cout << "6 - Quick Sort Versao 1" << endl;
+        cout << "7 - Quick Sort Versao 2" << endl;
         cout << "0 - Sair" << endl;
         cout << "Escolha uma opcao: ";
 
@@ -116,6 +119,12 @@ int main() {
                 break;
             case 5:
                 executarMenuDeTestes(MergeSort, "Merge Sort");
+                break;
+            case 6:
+                executarMenuDeTestes(QuickSortV1, "Quick Sort V1");
+                break;
+            case 7:
+                executarMenuDeTestes(QuickSortV2, "Quick Sort V2");
                 break;
             case 0:
                 cout << "Programa finalizado" << endl;
