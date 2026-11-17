@@ -19,6 +19,10 @@ add_executable(pesquisadealgoritmos
         src/Tools/Teste.h
         src/BubbleSort.cpp
         src/BubbleSort.h
+        src/FilaDePrioridade.cpp
+        src/FilaDePrioridade.h
+        src/Heap.cpp
+        src/Heap.h
         src/InsertionSort.cpp
         src/InsertionSort.h
         src/main.cpp

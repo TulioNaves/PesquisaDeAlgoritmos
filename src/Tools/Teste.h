@@ -5,6 +5,7 @@
 #include <functional>
 #include <string>
 
-void executarTeste(int tamanho, char tipo, std::function<void(std::vector<int>&)> algoritmo, const std::string& nomeAlgoritmo);
+// mostrarResultado = false nao imprime a linha de resultado de cada teste
+void executarTeste(int tamanho, char tipo, std::function<void(std::vector<int>&)> algoritmo, const std::string& nomeAlgoritmo, bool mostrarResultado = true);
 
 #endif //TESTE_H

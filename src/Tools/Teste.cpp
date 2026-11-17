@@ -8,7 +8,7 @@
 
 using namespace std;
 
-void executarTeste(int tamanho, char tipo, function<void(vector<int>&)> algoritmo, const string& nomeAlgoritmo) {
+void executarTeste(int tamanho, char tipo, function<void(vector<int>&)> algoritmo, const string& nomeAlgoritmo, bool mostrarResultado) {
     vector<int> vetor;
     string tipoNome;
 
@@ -59,5 +59,7 @@ void executarTeste(int tamanho, char tipo, function<void(vector<int>&)> algoritm
     string nomeTempo = pastaTempo + "/" + tipoNome + "/Tempo" + nomeArquivo + tipoNome + to_string(tamanho) + ".txt";
     salvarTempo(nomeTempo, tamanho, tempo);
 
-    cout << "Algoritmo: " << nomeAlgoritmo << " | Tipo: " << tipoNome << " | Tamanho: " << tamanho << " | Tempo: " << tempo << "s" << endl;
+    if (mostrarResultado) {
+        cout << "Algoritmo: " << nomeAlgoritmo << " | Tipo: " << tipoNome << " | Tamanho: " << tamanho << " | Tempo: " << tempo << "s" << endl;
+    }
 }
